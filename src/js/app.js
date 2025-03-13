@@ -5,7 +5,7 @@ import ChatWS from './chatws';
 import ChatApi from './chatapi';
 
 /* домен сервера */
-const domainUrl = 'ahj-hw8-1.onrender.com';
+const domainUrl = 'https://chat-gkog.onrender.com';
 
 
 /* элемент блока div в DOM */
