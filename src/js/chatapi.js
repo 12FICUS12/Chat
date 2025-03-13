@@ -1,41 +1,34 @@
-
 export default class ChatApi {
     constructor(domainUrl) {
-        this.baseURL = `http://${domainUrl}`;
-    }
+        this.baseURl = `http://${domainUrl}`;}
     
-    options(method, urlParam, body) {
-        return {
-            method,
-            urlParam,
-            body: JSON.stringify(body)
-        };
-    }
+        static options (method, urlParam, body) {
+            const value = {
+                method,
+                urlParam,
+                body: JSON.stringify(body)
 
-    async createRequest(options) {
-        const { method, urlParam, body } = options;
-        const newUrl = `${this.baseURL}/${urlParam}`;
- 
-        try {
+            };
+            return value;
+        }
+
+        async createRequest(options) {
+            const {method, urlParam, body} = options;
+
+            const newUrl = `${this.baseURl}/${urlParam}`;
+
             const response = await fetch(newUrl, {
                 method,
                 headers: {
-                    'Content-Type': 'application/json;charset=utf-8'
+                    'Content-Type': 'application/json'
                 },
                 body
             });
- 
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
- 
+
             const result = await response.json();
+            if (!result) { return false; }
             return result;
-        } catch (error) {
-            console.error('Fetch error:', error);
-            return false; 
         }
-    }
 
         async logining(body) {
             const options = this.constructor.options('POST', '?method=logining', body);
