@@ -20,7 +20,7 @@ export default class ChatApi {
             const response = await fetch(newUrl, {
                 method,
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json;charset=utf-8'
                 },
                 body
             });
