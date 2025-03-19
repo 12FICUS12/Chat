@@ -1,6 +1,6 @@
 export default class ChatApi {
     constructor(domainUrl) {
-        this.baseURl = `http://${domainUrl}`;}
+        this.baseURl = `https://${domainUrl}`;}
     
         static options (method, urlParam, body) {
             const value = {
@@ -31,9 +31,16 @@ export default class ChatApi {
         }
 
         async logining(body) {
-            const options = this.constructor.options('POST', '?method=logining', body);
-            const response = await this.createRequest(options);
-            return response;
+            const options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(body), // тело запроса с параметрами
+            };
+            
+            const response = await fetch( `https://${domainUrl}/login`, options);
+            return response.json();
         }
          async checkServer() {
             const options = this.constructor.options('GET', '');
